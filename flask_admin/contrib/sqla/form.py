@@ -300,7 +300,7 @@ class AdminModelConverter(ModelConverterBase):
     def convert_choice_type(self, column, field_args, **extra):
         available_choices = []
         # choices can either be specified as an enum, or as a list of tuples
-        if isinstance(column.type.choices, EnumMeta):
+        if isinstance(column.type.choices, EnumMeta) or isinstance(column.type.choices, tuple):
             available_choices = [(f.value, f.name) for f in column.type.choices]
         else:
             available_choices = column.type.choices
